@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Get architecture
+ARCH=`uname -m`
+if [ "$ARCH" == "armv6l" ] ; then
+    DIR=""
+elif [ "$ARCH" == "x86" ] ; then
+    DIR="x86/"
+elif [ "$ARCH" == "x86_64" ] ; then
+    DIR="x64/"
+fi
+
+if [ "$(id -u)" != "0" ]; then
+    USER_HOME="$HOME"
+else
+    USER_HOME="/home/${SUDO_USER}"
+fi
+
+apt-get update
+apt-get upgrade --yes
+
+apt-get install --yes git-core
+
+if [ "$ARCH" == "armv6l" ] ; then
+    sudo apt-get install locate curl libboost-dev libboost-regex-dev xterm xfonts-base xfonts-utils youtube-dl axel mpg123 libcurl4-openssl-dev flac sox
+else
+    sudo apt-get install locate curl libboost-dev libboost-regex-dev xterm xfonts-base xfonts-utils youtube-dl axel mpg123 libcurl4-openssl-dev flac sox
+fi
+
+tmp="/src/PiAUISuite/VoiceCommand/"
+tmp+="$DIR"
+tmp+="voicecommand"
+cp "$tmp" /usr/bin/
+cp /src/PiAUISuite/VoiceCommand/google /usr/bin/
+cp /src/PiAUISuite/VoiceCommand/tts /usr/bin/
+cp /src/PiAUISuite/VoiceCommand/speech-recog.sh /usr/bin/
+cp /src/PiAUISuite/VoiceCommand/voicecommand.8.gz /usr/share/man/man8/
+if [[ ! -f "$USER_HOME/.commands.conf" ]] ; then
+    echo "No commands found, using default"
+    cp /src/PiAUISuite/VoiceCommand/commands.conf "$USER_HOME/.commands.conf"
+else
+    echo "I found a command file"
+fi
+
+voicecommand -s
