@@ -22,7 +22,17 @@ apt-get install --yes espeak
 apt-get install --yes swig
 
 cd /usr/src
-git clone https://github.com/cmusphinx/sphinxbase.git pocketsphinx
+git clone https://github.com/cmusphinx/sphinxbase.git sphinxbase
+cd /usr/src/sphinxbase
+
+./autogen.sh 
+./configure
+make clean all
+make check
+make install
+
+cd /usr/src
+git clone https://github.com/cmusphinx/pocketsphinx.git pocketsphinx
 cd /usr/src/pocketsphinx
 
 ./autogen.sh 
@@ -32,6 +42,6 @@ make check
 make install
 
 # Primer TTS
-# espeak -ves "Espeak se ha instalado satisfactoriamente" 2>/dev/null
+espeak -ves "Hola. Ya se ha instalado el sistema de habla." 2>/dev/null
 
 
