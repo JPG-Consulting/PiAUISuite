@@ -7,11 +7,21 @@
 apt-get update
 apt-get upgrade --yes
 
+# git core
+apt-get install --yes git-core
+
 # Sound utilities
 apt-get install --yes alsa-tools alsa-utils
 
 # Install espeak TTS engine
 apt-get install --yes espeak
 
+# Pocketsphinx
+cd /usr/src
+git clone https://github.com/cmusphinx/sphinxbase.git pocketsphinx
+cd /usr/src/pocketsphinx
+
 # Primer TTS
-espeak -ves "Espeak se ha instalado satisfactoriamente" 2>/dev/null
+# espeak -ves "Espeak se ha instalado satisfactoriamente" 2>/dev/null
+
+
