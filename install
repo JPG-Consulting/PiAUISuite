@@ -1,0 +1,22 @@
+#!/bin/bash
+# Based on:
+# http://elinux.org/RPi_Text_to_Speech_(Speech_Synthesis)
+# Some extras
+# https://travesuras.wordpress.com/2012/01/11/20120111-1/
+
+apt-get update
+apt-get upgrade --yes
+
+# Sound utilities
+apt-get install --yes alsa-tools alsa-utils
+
+# Install espeak TTS engine
+apt-get install --yes espeak
+
+# Pocketsphinx
+
+apt-get install --yes pocketsphinx sphinxtrain
+
+# Primer TTS
+espeak -ves "Hola. Ya se ha instalado el sistema de habla." 2>/dev/null
+
