@@ -18,6 +18,9 @@ apt-get install --yes alsa-tools alsa-utils
 apt-get install --yes espeak
 
 # Pocketsphinx
+
+apt-get install --yes swig
+
 cd /usr/src
 git clone https://github.com/cmusphinx/sphinxbase.git pocketsphinx
 cd /usr/src/pocketsphinx
