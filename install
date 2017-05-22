@@ -9,6 +9,7 @@ apt-get upgrade --yes
 
 # git core
 apt-get install --yes git-core
+apt-get install --yes autoconf libtool
 
 # Sound utilities
 apt-get install --yes alsa-tools alsa-utils
