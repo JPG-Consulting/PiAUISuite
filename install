@@ -21,6 +21,12 @@ cd /usr/src
 git clone https://github.com/cmusphinx/sphinxbase.git pocketsphinx
 cd /usr/src/pocketsphinx
 
+./autogen.sh 
+./configure
+make clean all
+make check
+make install
+
 # Primer TTS
 # espeak -ves "Espeak se ha instalado satisfactoriamente" 2>/dev/null
 
